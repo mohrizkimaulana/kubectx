@@ -78,7 +78,38 @@ kubectx installation steps for Mac
    ```bash
    kubectl krew install konfig
    ```
+   add the code below to your .zshrc or .bashrc
 
+   if you use `.zshrc`
+   
+   ```bash
+   nano ~/.zshrc
+   ```
+
+   if your use  `.bashrc`
+
+   ```bash
+   nano ~/.bashrc
+   ```
+   
+   paste code bellow
+   
+   ```bash
+   export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+   ```
+
+   ```bash
+   source ~/.zshrc
+   ```
+
+   or
+
+   ```bash
+   source ~/.bashrc
+   ```
+
+   ###############
+   
    if you got an error `error: unknown command "krew" for "kubectl" ` when execute `kubectl krew install konfig`, you need to follow this command below
 
    ```bash
