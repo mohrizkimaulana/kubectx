@@ -71,17 +71,45 @@ kubectx installation steps for Mac
    export KUBECONFIG=~/.kube/config:~/config-name
    ```
 
-  ```bash
-  kubectl config view --flatten > ~/.kube/.config
-  ```
+   ```bash
+   kubectl config view --flatten > ~/.kube/.config
+   ```
 
-  ```bash
-  kubectl krew install konfig
-  ```
+   ```bash
+   kubectl krew install konfig
+   ```
 
-  if you got an error, you need to follow this command
+   if you got an error `error: unknown command "krew" for "kubectl" ` when execute `kubectl krew install konfig`, you need to follow this command below
+
+   ```bash
+   nano install.sh
+   ```
    
-6.    
+   ```bash
+   (
+   set -x; cd "$(mktemp -d)" &&
+   OS="$(uname | tr '[:upper:]' '[:lower:]')" &&
+   ARCH="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')" &&
+   KREW="krew-${OS}_${ARCH}" &&
+   curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/${KREW}.tar.gz" &&
+   tar zxvf "${KREW}.tar.gz" &&
+   ./"${KREW}" install krew
+   )
+   ```
+
+   ```bash
+   chmod +x install.sh
+   ```
+
+   ```bash
+   ./install.sh
+   ```
+   
+6. Import config file
+
+   ```bash
+   kubectl konfig import -s ~/config-name
+   ```
 
 
 
